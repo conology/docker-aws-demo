@@ -38,7 +38,7 @@ node {
     }*/
     
     stage('upload to ECR') {
-        sh "echo ${ACCESS_KEY}"
+        sh "echo $ACCESS_KEY"
         sh "echo ${REGION}"
         //login with user
         sh 'aws configure set aws_access_key_id $ACCESS_KEY'
