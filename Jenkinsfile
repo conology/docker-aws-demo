@@ -7,11 +7,12 @@ node {
     environment {
         ACCESS_KEY = credentials("ACCESS_KEY")
         SECRET_ACCESS_KEY = credentials("SECRET_ACCESS_KEY")
+        TEST = credentials("TEST")
         REGION = 'eu-central-1'
     }
     
     stage ('Test') {
-        sh "echo credentials("TEST")"
+        sh "echo ${env.TEST} ${env.REGION} ${REPOSITORY}"
     }
     /*stage ('Pull') {
       sh 'docker pull nginxdemos/hello'
