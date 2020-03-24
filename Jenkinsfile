@@ -61,7 +61,7 @@ node {
         sh 'docker tag nginxdemos/hello 586513809140.dkr.ecr.eu-central-1.amazonaws.com/hello'
         
         //get the token from AWS
-        sh "aws ecr get-login --no-include-email --region ${env.REGION}"
+        sh 'aws ecr get-login --no-include-email --region eu-central-1'
         //sh 'aws ecr get-login --no-include-email --region eu-central-1 | bash'
       
         //push the image 
