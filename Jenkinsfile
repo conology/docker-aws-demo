@@ -12,7 +12,7 @@ node {
     }
     
     stage ('Test') {
-        sh 'echo ${env.TEST}'
+        sh "echo ${env.TEST}"
     }
     /*stage ('Pull') {
       sh 'docker pull nginxdemos/hello'
