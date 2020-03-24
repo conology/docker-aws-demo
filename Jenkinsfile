@@ -1,22 +1,17 @@
 node {
     
-    def customImage
+    //def customImage
     def REPOSITORY = 'conology_repository'
     def REGION = 'eu-central-1'
     
     environment {
         ACCESS_KEY = credentials("ACCESS_KEY")
-        SECRET_ACCESS_KEY = credentials("SECRET_ACCESS_KEY")
-        TEST = "Test"
-        
+        SECRET_ACCESS_KEY = credentials("SECRET_ACCESS_KEY")       
     }
     
-    stage ('Test') {
-        sh 'echo "${env.TEST}"'
-    }
-    /*stage ('Pull') {
+    stage ('Pull') {
       sh 'docker pull nginxdemos/hello'
-    }*/
+    }
     
     /*stage ('Checkout'){
         checkout scm
@@ -43,7 +38,7 @@ node {
         sh 'docker commit JHG_wordpress jhg_wordpress_cloud'
     }*/
     
-    /*stage('upload to ECR') {
+    stage('upload to ECR') {
         
         //login with user
         sh "aws configure set aws_access_key_id ${env.ACCESS_KEY}"
@@ -77,5 +72,5 @@ node {
         // here we push the freshly created images to AWS and execute them
         
         // ECS stuff in here!
-    }*/
+    }
 }
