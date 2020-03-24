@@ -38,12 +38,13 @@ node {
     }*/
     
     stage('upload to ECR') {
-        sh "echo $ACCESS_KEY"
+        
+        sh "echo ${env.ACCESS_KEY}"
         sh "echo ${REGION}"
         //login with user
-        sh 'aws configure set aws_access_key_id $ACCESS_KEY'
-        sh 'aws configure set aws_secret_access_key $SECRET_ACCESS_KEY'
-        sh 'aws configure set default.region $REGION'
+        sh "aws configure set aws_access_key_id ${env.ACCESS_KEY}"
+        sh "aws configure set aws_secret_access_key ${env.SECRET_ACCESS_KEY}"
+        sh "aws configure set default.region ${REGION}"
         
         //one time job
         // create a jenkins-secret encrypted version of ~./aws
