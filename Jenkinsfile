@@ -3,16 +3,15 @@ node {
     def customImage
     def REPOSITORY = 'conology_repository'
     def REGION = 'eu-central-1'
-    def ACCESS_KEY = credentials("ACCESS_KEY")
     
     environment {
-        
+        ACCESS_KEY = credentials("ACCESS_KEY")
         SECRET_ACCESS_KEY = credentials("SECRET_ACCESS_KEY")
         TEST = credentials("TEST")
     }
     
     stage ('Test') {
-        sh "echo ${ACCESS_KEY} ${REGION} ${REPOSITORY}"
+        sh 'echo ${ACCESS_KEY} ${REGION} ${REPOSITORY}'
     }
     /*stage ('Pull') {
       sh 'docker pull nginxdemos/hello'
