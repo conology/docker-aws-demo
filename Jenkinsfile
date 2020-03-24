@@ -7,7 +7,7 @@ node {
     environment {
         ACCESS_KEY = credentials("ACCESS_KEY")
         SECRET_ACCESS_KEY = credentials("SECRET_ACCESS_KEY")
-        TEST = 'Test'
+        TEST = "Test"
         
     }
     
