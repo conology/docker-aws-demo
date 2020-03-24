@@ -1,7 +1,7 @@
 node {
     
     //def customImage
-    def REPOSITORY = 'conology_repository'
+    def REPOSITORY = 'automation'
     def REGION = 'eu-central-1'
     
     environment {
@@ -43,7 +43,7 @@ node {
         //login with user
         sh "aws configure set aws_access_key_id ${env.ACCESS_KEY}"
         sh "aws configure set aws_secret_access_key ${env.SECRET_ACCESS_KEY}"
-        sh "aws configure set default.region ${env.REGION}"
+        sh "aws configure set default.region ${REGION}"
         
         //one time job
         // create a jenkins-secret encrypted version of ~./aws
@@ -58,14 +58,14 @@ node {
         //tag the docker images 
         //sh 'docker tag jhg_wordpress_cloud 586513809140.dkr.ecr.eu-central-1.amazonaws.com/automation/jhg_wordpress_cloud'
         //sh 'docker tag mysql:5.7 586513809140.dkr.ecr.eu-central-1.amazonaws.com/automation/mysql:5.7'
-        sh 'docker tag nginxdemos/hello 586513809140.dkr.ecr.eu-central-1.amazonaws.com/hello'
+        sh 'docker tag nginxdemos/hello 586513809140.dkr.ecr.eu-central-1.amazonaws.com/${REPOSITORY}/hello'
         
         //get the token from AWS
-        sh 'aws ecr get-login --no-include-email --region eu-central-1'
+        sh 'aws ecr get-login --no-include-email --region ${REGION}'
         //sh 'aws ecr get-login --no-include-email --region eu-central-1 | bash'
       
         //push the image 
-       // sh 'docker push 586513809140.dkr.ecr.eu-central-1.amazonaws.com/hello'
+       // sh 'docker push 586513809140.dkr.ecr.eu-central-1.amazonaws.com/${REPOSITORY}/hello'
       
     }
     stage('deploy AWS') {
