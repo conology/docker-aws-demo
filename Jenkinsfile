@@ -11,7 +11,7 @@ node {
     }
     
     stage ('Test') {
-        sh "echo ${ACCESS_KEY} ${REGION} ${REPOSITORY}"
+        sh 'echo $ACCESS_KEY ${REGION} ${REPOSITORY}'
     }
     /*stage ('Pull') {
       sh 'docker pull nginxdemos/hello'
