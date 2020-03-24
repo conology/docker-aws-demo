@@ -12,7 +12,7 @@ node {
     
     stage ('Test') {
         sh "echo credentials("TEST")"
-    
+    }
     /*stage ('Pull') {
       sh 'docker pull nginxdemos/hello'
     }*/
