@@ -6,6 +6,7 @@ node {
         ACCESS_KEY = credentials("ACCESS_KEY")
         SECRET_ACCESS_KEY = credentials("SECRET_ACCESS_KEY")
         REPOSITORY = "conology_repository"
+        REGION = 'eu-central-1'
     }
     stage ('Pull') {
       sh 'docker pull nginxdemos/hello'
@@ -38,9 +39,9 @@ node {
     
     stage('upload to ECR') {
         //login with user
-        sh 'aws configure'
-        sh 'eu-central-1'
-        sh 'json'
+        sh 'aws configure set aws_access_key_id $ACCESS_KEY'
+        sh 'aws configure set aws_secret_access_key $SECRET_ACCESS_KEY'
+        sh 'aws configure set default.region $REGION'
         
         //one time job
         // create a jenkins-secret encrypted version of ~./aws
@@ -50,7 +51,7 @@ node {
         // load these credentials and store them in the jenkins-blueocean image to have aws preconfigured
         
         //create the AWS repository
-        sh 'aws ecr create-repository --repository-name test || true'
+        sh 'aws ecr create-repository --repository-name $REPOSITORY || true'
        
         //tag the docker images 
         sh 'docker tag jhg_wordpress_cloud 586513809140.dkr.ecr.eu-central-1.amazonaws.com/automation/jhg_wordpress_cloud'
